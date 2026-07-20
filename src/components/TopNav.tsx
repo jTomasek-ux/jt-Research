@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LangSwitch } from "@/components/LangSwitch";
 
 export type NavLanguageLink = {
   lang: string;
@@ -38,37 +39,7 @@ export function TopNav({
             {papersLabel}
           </Link>
 
-          <div
-            className="flex items-center rounded-md border border-hairline p-0.5"
-            role="group"
-            aria-label="Language"
-          >
-            {languageLinks.map((link) => {
-              const classes = `rounded px-2.5 py-1.5 font-sans text-xs font-semibold tracking-wide transition-colors ${
-                link.current
-                  ? "bg-surface-card text-ink"
-                  : "text-muted hover:text-ink"
-              }`;
-
-              if (link.current || !link.href) {
-                return (
-                  <span
-                    key={link.lang}
-                    className={classes}
-                    aria-current={link.current ? "true" : undefined}
-                  >
-                    {link.label}
-                  </span>
-                );
-              }
-
-              return (
-                <Link key={link.lang} href={link.href} className={classes}>
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
+          <LangSwitch links={languageLinks} />
         </nav>
       </div>
     </header>

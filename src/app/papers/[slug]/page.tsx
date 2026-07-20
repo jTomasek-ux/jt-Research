@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { TopNav } from "@/components/TopNav";
 import { Footer } from "@/components/Footer";
 import { PaperToc } from "@/components/PaperToc";
+import { RestorePaperPosition } from "@/components/RestorePaperPosition";
 import { mdxComponents } from "@/components/mdx-components";
 import {
   getAllPaperSlugs,
@@ -53,6 +54,7 @@ export default async function PaperPage({
         papersLabel={lang === "cs" ? "Články" : "Papers"}
       />
       <main className="flex-1 bg-canvas">
+        <RestorePaperPosition />
         <header className="px-6 pb-16 pt-20 sm:pb-20 sm:pt-28">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <p className="font-sans text-sm font-semibold tracking-tight text-ink">
