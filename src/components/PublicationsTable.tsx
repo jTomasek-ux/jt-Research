@@ -1,21 +1,30 @@
 import Link from "next/link";
 import type { Paper } from "@/lib/papers";
+import type { HomeCopy, HomeLang } from "@/lib/home-copy";
 
-function formatDate(date: string) {
+function formatDate(date: string, lang: HomeLang) {
   if (!date) return "";
-  return new Date(date).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString(lang === "cs" ? "cs-CZ" : "en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 }
 
-export function PublicationsTable({ papers }: { papers: Paper[] }) {
+export function PublicationsTable({
+  papers,
+  copy,
+  lang,
+}: {
+  papers: Paper[];
+  copy: HomeCopy;
+  lang: HomeLang;
+}) {
   return (
     <section id="papers" className="bg-canvas">
       <div className="mx-auto max-w-[1200px] px-6 pb-section pt-14 sm:pt-16">
         <h2 className="font-serif text-3xl font-normal tracking-tight text-ink sm:text-4xl">
-          Publications
+          {copy.publications}
         </h2>
 
         {papers.length > 0 ? (
@@ -24,13 +33,13 @@ export function PublicationsTable({ papers }: { papers: Paper[] }) {
               <thead>
                 <tr className="border-b border-hairline">
                   <th className="w-[140px] pb-4 pr-6 font-sans text-xs font-medium uppercase tracking-wider text-muted">
-                    Date
+                    {copy.date}
                   </th>
                   <th className="w-[200px] pb-4 pr-6 font-sans text-xs font-medium uppercase tracking-wider text-muted">
-                    Category
+                    {copy.category}
                   </th>
                   <th className="pb-4 font-sans text-xs font-medium uppercase tracking-wider text-muted">
-                    Title
+                    {copy.titleCol}
                   </th>
                 </tr>
               </thead>
@@ -43,7 +52,7 @@ export function PublicationsTable({ papers }: { papers: Paper[] }) {
                         className="grid grid-cols-[140px_200px_minmax(0,1fr)] py-5 font-serif text-base text-body underline-offset-4 transition-colors hover:bg-surface-soft/60 hover:underline"
                       >
                         <span className="whitespace-nowrap pr-6">
-                          {formatDate(paper.date)}
+                          {formatDate(paper.date, lang)}
                         </span>
                         <span className="pr-6">{paper.category}</span>
                         <span className="text-ink">{paper.title}</span>
@@ -56,12 +65,9 @@ export function PublicationsTable({ papers }: { papers: Paper[] }) {
           </div>
         ) : (
           <div className="mt-10 flex flex-col items-center rounded-lg border border-hairline py-24 text-center">
-            <p className="font-serif text-2xl text-ink">
-              No papers published yet
-            </p>
+            <p className="font-serif text-2xl text-ink">{copy.emptyTitle}</p>
             <p className="mt-3 max-w-sm font-serif text-sm leading-relaxed text-muted">
-              Check back soon &mdash; new research will appear here as
-              it&apos;s written.
+              {copy.emptyBody}
             </p>
           </div>
         )}

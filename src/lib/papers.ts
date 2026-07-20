@@ -48,12 +48,22 @@ export function getAllPaperSlugs(): string[] {
     .map((file: string) => file.replace(/\.mdx$/, ""));
 }
 
-/** Primary papers only — translations are linked from their parent. */
+/** Primary papers only; translations are linked from their parent. */
 export function getAllPapers(): Paper[] {
   return getAllPaperSlugs()
     .map((slug: string) => readPaperFile(slug))
     .filter((paper: Paper) => paper.translationOf === null)
     .sort((a: Paper, b: Paper) => (a.date < b.date ? 1 : -1));
+}
+
+/** Resolve each primary paper to the version for the given language when available. */
+export function getPapersForLang(lang: string): Paper[] {
+  return getAllPapers().map((paper) => {
+    if (paper.lang === lang) return paper;
+    const translatedSlug = paper.translations[lang];
+    if (!translatedSlug) return paper;
+    return getPaperBySlug(translatedSlug) ?? paper;
+  });
 }
 
 export function getPaperBySlug(slug: string): Paper | null {

@@ -8,15 +8,16 @@ import {
   getNavLanguageLinks,
   getPaperBySlug,
 } from "@/lib/papers";
+import { homePath, type HomeLang } from "@/lib/home-copy";
 
 export function generateStaticParams() {
   return getAllPaperSlugs().map((slug) => ({ slug }));
 }
 
-function formatDate(dateString: string) {
+function formatDate(dateString: string, lang: string) {
   const date = new Date(dateString);
   if (Number.isNaN(date.getTime())) return dateString;
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString(lang === "cs" ? "cs-CZ" : "en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -34,10 +35,15 @@ export default async function PaperPage({
   if (!paper) notFound();
 
   const languageLinks = getNavLanguageLinks(paper);
+  const lang = (paper.lang === "cs" ? "cs" : "en") as HomeLang;
 
   return (
     <>
-      <TopNav languageLinks={languageLinks} />
+      <TopNav
+        languageLinks={languageLinks}
+        homeHref={homePath(lang)}
+        papersLabel={lang === "cs" ? "Články" : "Papers"}
+      />
       <main className="flex-1 bg-canvas">
         <header className="px-6 pb-16 pt-20 sm:pb-20 sm:pt-28">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -48,7 +54,7 @@ export default async function PaperPage({
               {paper.title}
             </h1>
             <p className="mt-5 font-sans text-sm text-ink">
-              {formatDate(paper.date)}
+              {formatDate(paper.date, lang)}
             </p>
           </div>
         </header>
@@ -61,7 +67,7 @@ export default async function PaperPage({
           {paper.authors.length > 0 && (
             <section className="mt-16 border-t border-hairline pt-10">
               <h2 className="font-serif text-2xl font-normal tracking-tight text-ink">
-                {paper.lang === "cs" ? "Autor" : "Author"}
+                {lang === "cs" ? "Autor" : "Author"}
               </h2>
               <p className="mt-4 font-serif text-lg text-body">
                 {paper.authors.join(", ")}
