@@ -1,11 +1,13 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { TopNav } from "@/components/TopNav";
 import { Footer } from "@/components/Footer";
-import { Badge } from "@/components/Badge";
 import { mdxComponents } from "@/components/mdx-components";
-import { getAllPaperSlugs, getPaperBySlug } from "@/lib/papers";
+import {
+  getAllPaperSlugs,
+  getNavLanguageLinks,
+  getPaperBySlug,
+} from "@/lib/papers";
 
 export function generateStaticParams() {
   return getAllPaperSlugs().map((slug) => ({ slug }));
@@ -16,7 +18,7 @@ function formatDate(dateString: string) {
   if (Number.isNaN(date.getTime())) return dateString;
   return date.toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
     day: "numeric",
   });
 }
@@ -31,41 +33,41 @@ export default async function PaperPage({
 
   if (!paper) notFound();
 
+  const languageLinks = getNavLanguageLinks(paper);
+
   return (
     <>
-      <TopNav />
+      <TopNav languageLinks={languageLinks} />
       <main className="flex-1 bg-canvas">
-        <article className="mx-auto max-w-2xl px-6 py-section">
-          <Link
-            href="/"
-            className="font-sans text-sm font-medium text-muted hover:text-ink transition-colors"
-          >
-            &larr; All papers
-          </Link>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {paper.tags.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
-            ))}
+        <header className="px-6 pb-16 pt-20 sm:pb-20 sm:pt-28">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <p className="font-sans text-sm font-semibold tracking-tight text-ink">
+              JT-Research
+            </p>
+            <h1 className="mt-5 font-sans text-4xl font-bold leading-[1.15] tracking-tight text-ink sm:text-5xl md:text-[3.25rem]">
+              {paper.title}
+            </h1>
+            <p className="mt-5 font-sans text-sm text-ink">
+              {formatDate(paper.date)}
+            </p>
           </div>
+        </header>
 
-          <h1 className="mt-4 font-display text-4xl md:text-5xl leading-[1.1] tracking-tight text-ink">
-            {paper.title}
-          </h1>
-
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-sm text-muted">
-            <span>{paper.authors.join(", ")}</span>
-            <span aria-hidden>&middot;</span>
-            <span>{formatDate(paper.date)}</span>
-          </div>
-
-          <p className="mt-8 font-display text-xl italic leading-relaxed text-body-strong">
-            {paper.abstract}
-          </p>
-
-          <div className="prose prose-neutral mt-4 max-w-none border-t border-hairline pt-4">
+        <article className="mx-auto max-w-2xl px-6 pb-section">
+          <div className="prose prose-neutral max-w-none">
             <MDXRemote source={paper.content} components={mdxComponents} />
           </div>
+
+          {paper.authors.length > 0 && (
+            <section className="mt-16 border-t border-hairline pt-10">
+              <h2 className="font-serif text-2xl font-normal tracking-tight text-ink">
+                {paper.lang === "cs" ? "Autor" : "Author"}
+              </h2>
+              <p className="mt-4 font-serif text-lg text-body">
+                {paper.authors.join(", ")}
+              </p>
+            </section>
+          )}
         </article>
       </main>
       <Footer />

@@ -3,28 +3,31 @@ import type { MDXComponents } from "mdx/types";
 export const mdxComponents: MDXComponents = {
   h2: (props) => (
     <h2
-      className="mt-12 font-display text-3xl leading-snug text-ink"
+      className="mt-12 font-serif text-3xl font-normal leading-snug text-ink"
       {...props}
     />
   ),
   h3: (props) => (
     <h3
-      className="mt-8 font-display text-2xl leading-snug text-ink"
+      className="mt-8 font-serif text-2xl font-normal leading-snug text-ink"
       {...props}
     />
   ),
   p: (props) => (
-    <p className="mt-5 font-sans text-base leading-relaxed text-body" {...props} />
+    <p
+      className="mt-5 font-serif text-base leading-relaxed text-body"
+      {...props}
+    />
   ),
   ul: (props) => (
     <ul
-      className="mt-5 list-disc space-y-2 pl-6 font-sans text-base leading-relaxed text-body"
+      className="mt-5 list-disc space-y-2 pl-6 font-serif text-base leading-relaxed text-body"
       {...props}
     />
   ),
   ol: (props) => (
     <ol
-      className="mt-5 list-decimal space-y-2 pl-6 font-sans text-base leading-relaxed text-body"
+      className="mt-5 list-decimal space-y-2 pl-6 font-serif text-base leading-relaxed text-body"
       {...props}
     />
   ),
@@ -34,7 +37,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: (props) => (
     <blockquote
-      className="mt-5 border-l-2 border-primary pl-4 font-sans italic text-body"
+      className="mt-5 border-l-2 border-primary pl-4 font-serif italic text-body"
       {...props}
     />
   ),
@@ -59,5 +62,8 @@ export const mdxComponents: MDXComponents = {
         className="w-full rounded-lg border border-hairline"
       />
     </span>
+  ),
+  strong: (props) => (
+    <strong className="font-semibold text-ink" {...props} />
   ),
 };

@@ -1,12 +1,11 @@
 import { TopNav } from "@/components/TopNav";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
-import { PaperGrid } from "@/components/PaperGrid";
-import { getAllPapers, getAllTags } from "@/lib/papers";
+import { PublicationsTable } from "@/components/PublicationsTable";
+import { getAllPapers } from "@/lib/papers";
 
 export default function Home() {
   const papers = getAllPapers();
-  const tags = getAllTags();
 
   return (
     <>
@@ -14,9 +13,23 @@ export default function Home() {
       <main className="flex-1">
         <Hero
           title="Research from JT-Research"
-          description="Papers, findings, and ongoing work — published here as they're ready."
+          description={
+            <>
+              Hello, I&apos;m Jan, and I share my recent research and findings
+              here. I hope you find something useful. Thank you for looking at
+              this site. If you have any thoughts on my work, feel free to
+              contact me at{" "}
+              <a
+                href="mailto:tomasekjan128@gmail.com"
+                className="text-primary underline underline-offset-2 hover:text-primary-active"
+              >
+                tomasekjan128@gmail.com
+              </a>
+              .
+            </>
+          }
         />
-        <PaperGrid papers={papers} tags={tags} />
+        <PublicationsTable papers={papers} />
       </main>
       <Footer />
     </>

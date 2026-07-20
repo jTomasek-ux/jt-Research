@@ -11,7 +11,10 @@ served at `/papers/my-paper`.
 title: "Paper title"
 date: "2026-07-20"
 authors: ["Your Name"]
-tags: ["category-one", "category-two"]
+category: "Economic Research"
+lang: en
+translations:
+  cs: my-paper-cs
 abstract: "A one or two sentence summary shown on the listing page and at the top of the paper."
 ---
 
@@ -28,12 +31,23 @@ PNG/SVG into `public/papers/<slug>/`, e.g.
 ![Figure 1: description](/papers/my-paper/figure-1.png)
 ```
 
+## Translations
+
+Keep the English (or primary) paper as the listed entry. Add a sibling `.mdx`
+file for each translation and wire them with frontmatter:
+
+- Primary paper: `lang: en` and `translations: { cs: my-paper-cs }`
+- Czech file: `lang: cs` and `translationOf: my-paper`
+
+Files with `translationOf` are hidden from the home listing and reachable via
+the language button on the paper page.
+
 ## Notes
 
 - `date` should be an ISO string (`YYYY-MM-DD`) so papers sort correctly on
   the listing page.
-- `tags` populate the category filter tabs on the listing page.
+- `category` is a single label shown in the Publications table (e.g.
+  `Economic Research`).
 - Images/figures live in `public/papers/<slug>/` (not in this folder),
   since Next.js only serves static files out of `public/`.
-- There are no sample papers checked in — this folder starts empty on
-  purpose. Add your first `.mdx` file here whenever you're ready.
+- Chart scripts can live under `scripts/` (see `scripts/luxury-hotel-charts.py`).
