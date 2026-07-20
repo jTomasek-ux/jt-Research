@@ -2,11 +2,13 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { TopNav } from "@/components/TopNav";
 import { Footer } from "@/components/Footer";
+import { PaperToc } from "@/components/PaperToc";
 import { mdxComponents } from "@/components/mdx-components";
 import {
   getAllPaperSlugs,
   getNavLanguageLinks,
   getPaperBySlug,
+  getPaperSections,
 } from "@/lib/papers";
 import { homePath, type HomeLang } from "@/lib/home-copy";
 
@@ -36,6 +38,12 @@ export default async function PaperPage({
 
   const languageLinks = getNavLanguageLinks(paper);
   const lang = (paper.lang === "cs" ? "cs" : "en") as HomeLang;
+  const sections = [
+    ...getPaperSections(paper.content),
+    ...(paper.authors.length > 0
+      ? [{ id: "author", title: lang === "cs" ? "Autor" : "Author" }]
+      : []),
+  ];
 
   return (
     <>
@@ -60,12 +68,20 @@ export default async function PaperPage({
         </header>
 
         <article className="mx-auto max-w-2xl px-6 pb-section">
+          <PaperToc
+            sections={sections}
+            label={lang === "cs" ? "Obsah" : "Contents"}
+          />
+
           <div className="prose prose-neutral max-w-none">
             <MDXRemote source={paper.content} components={mdxComponents} />
           </div>
 
           {paper.authors.length > 0 && (
-            <section className="mt-16 border-t border-hairline pt-10">
+            <section
+              id="author"
+              className="mt-16 scroll-mt-28 border-t border-hairline pt-10"
+            >
               <h2 className="font-serif text-2xl font-normal tracking-tight text-ink">
                 {lang === "cs" ? "Autor" : "Author"}
               </h2>

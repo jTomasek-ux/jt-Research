@@ -144,3 +144,24 @@ export function getNavLanguageLinks(
     current: link.current,
   }));
 }
+
+export function slugifyHeading(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export type PaperSection = { id: string; title: string };
+
+/** Extract ## headings from MDX body for the left TOC. */
+export function getPaperSections(content: string): PaperSection[] {
+  const sections: PaperSection[] = [];
+  for (const match of content.matchAll(/^## (.+)$/gm)) {
+    const title = match[1].trim();
+    sections.push({ id: slugifyHeading(title), title });
+  }
+  return sections;
+}

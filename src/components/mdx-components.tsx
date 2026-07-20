@@ -1,18 +1,41 @@
 import type { MDXComponents } from "mdx/types";
+import type { ReactNode } from "react";
+import { slugifyHeading } from "@/lib/papers";
+
+function flattenText(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(flattenText).join("");
+  if (typeof node === "object" && "props" in node) {
+    const element = node as { props?: { children?: ReactNode } };
+    return flattenText(element.props?.children);
+  }
+  return "";
+}
 
 export const mdxComponents: MDXComponents = {
-  h2: (props) => (
-    <h2
-      className="mt-12 font-serif text-3xl font-normal leading-snug text-ink"
-      {...props}
-    />
-  ),
-  h3: (props) => (
-    <h3
-      className="mt-8 font-serif text-2xl font-normal leading-snug text-ink"
-      {...props}
-    />
-  ),
+  h2: (props) => {
+    const text = flattenText(props.children);
+    const id = props.id ?? (text ? slugifyHeading(text) : undefined);
+    return (
+      <h2
+        {...props}
+        id={id}
+        className="mt-12 scroll-mt-28 font-serif text-3xl font-normal leading-snug text-ink"
+      />
+    );
+  },
+  h3: (props) => {
+    const text = flattenText(props.children);
+    const id = props.id ?? (text ? slugifyHeading(text) : undefined);
+    return (
+      <h3
+        {...props}
+        id={id}
+        className="mt-8 scroll-mt-28 font-serif text-2xl font-normal leading-snug text-ink"
+      />
+    );
+  },
   p: (props) => (
     <p
       className="mt-5 font-serif text-base leading-relaxed text-body"

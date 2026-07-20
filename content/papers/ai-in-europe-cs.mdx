@@ -1,0 +1,189 @@
+---
+title: "AI advancements v Evropě"
+date: "2026-07-20"
+authors: ["Jan Tomášek"]
+category: "Technology Research"
+lang: cs
+translationOf: ai-in-europe
+abstract: "Proč je potřeba číst Evropu v AI závodě jako jurisdikci: státní kontrola, EU vs. USA/Čína, tlak open-weight modelů, alokace VC a proč kontinent riskuje prohru na frontier vrstvě."
+---
+
+Když se dnes říká „AI závod“, většina lidí slyší jména: OpenAI, Anthropic, Google, DeepSeek, Mistral. To je pochopitelné. Firmy vydávají modely, tisknou benchmarky a berou předplatné. Pokud zůstaneme jen u firem, mineme to podstatné.
+
+Frontier AI dnes ovlivňuje produktivitu, bezpečnost, výzkum i geopolitiku. Státy proto nejednají jako pasivní zákazníci. Jednají jako hráči: omezují export čipů, tlačí na licensing, regulují, kdo smí model nasadit, a rozhodují, zda se domácí ekosystém stane závislým na cizí infrastruktuře. Proto dává smysl mluvit o **Evropě jako celku**: o jednotném trhu, o společné regulaci (AI Act), o společném kapitálovém a energetickém omezení, a o tom, jak EU jako blok dopadá oproti USA a Číně.
+
+Jednotlivá evropská firma může být skvělá. To ale nestačí k odpovědi na otázku, zda Evropa dokáže mít suverenitu v AI: vlastní kapacitu trénovat, nasazovat a udržovat frontier systémy bez strategické závislosti. Tento text proto sleduje EU jako pole hry, ne jako katalog firemních PR zpráv.
+
+Grafy níže jsou **ilustrativní syntézy pro argumentaci**. Mají udělat tezi čitelnou. Nejsou náhradou za živý leaderboard ani za jeden PitchBook export. Až budete chtít tvrdší čísla, grafy se vymění.
+
+## 1. Proč je AI v Evropě zajímavé téma
+
+AI je game changer, ale už na úrovni **státu**, ne na úrovni „který startup má lepší chatbot“. Stát se snaží získat kontrolu nad AI, protože AI mění ekonomickou i bezpečnostní mapu. USA to ukazují jasně: omezení přístupu k modelům a čipům není marketing. Je to nástroj geopolitiky.
+
+### USA, Fable třída modelů a Anthropic
+
+Americké frontier laby prakticky staví svět, ve kterém nejlepší uzavřené modely nejsou volně dostupné „zbytku světa“ stejně jako doma. Restrikce a compliance rámce oddělují, kdo smí k čemu. To není detail produktové politiky. Je to státní logika: inteligence jako strategická komodita.
+
+Anthropic ve veřejném narativu jde ještě dál. Problém není jen „zakázat zbytek světa“. Problém je, že pokud uživatelé ztratí přístup k západním modelům (nebo pokud laby omezí dostupnost), migrují k čínským alternativám. Čínské open-weight modely se čtou jako strategická hrozba: nejen konkurence v benchi, ale kanál, kterým se může přesunout adoption, data i softwarový ekosystém.
+
+Pracovní teze k ověření zdroji: Anthropic signalizuje ochotu omezit globální dostupnost spíš než riskovat, že uživatelé odejdou k čínským modelům. Fable-class releasy jsou důležité, protože vyostřují boj o kontrolu a dostupnost ve chvíli, kdy closed laby hrají o IPO narativ.
+
+Pro Evropu z toho plyne nepříjemná otázka: pokud AI závod řídí státy a mega-laby s kapitálem a čipy, co zůstane EU? Regulace bez infrastruktury? Aplikace bez modelů? **Má EU schopnost držet krok? A proč ano, či ne?**
+
+## 2. Evropské modely vs. zbytek světa
+
+Benchmarky nejsou pravda. Jsou politickým i marketingovým jazykem AI závodu. Přesto bez nich nejde porovnat, jestli evropské laby (typicky kolem open / evropských hráčů typu Mistral a dalších) drží krok s USA closed laby a s čínskými open laby.
+
+Co měřit (ne jen jedno číslo):
+
+1. Surová schopnost (reasoning, coding, agentic úlohy).
+2. Lag za frontierem v **měsících**, ne jen absolutní skóre.
+3. Náklad na inference a dostupnost (API vs. self-host).
+4. Licence a exportní omezení: kdo smí model vůbec provozovat.
+5. Závislost na cizích čipech a cloudu.
+
+Teze: Evropa může mít solidní mid-frontier a silné aplikace, ale na absolutním frontieru (nejnovější closed laby USA + nejrychlejší čínské open skoky) zůstává spíš follower. Smyslem této sekce je **velikost a směr zpoždění**, ne evropský triumfalismus.
+
+![Obrázek 1: Pojmenované modely podle regionu na Intelligence Index](/papers/ai-in-europe/figure-1-model-benchmarks.png)
+
+*Obrázek 1.* Pojmenované modely podle regionu na Artificial Analysis Intelligence Index (veřejný snapshot, červenec 2026). US closed frontier stále vede. Kimi K3 ukazuje Čínu uvnitř top tieru. Evropské Mistral skóry jsou zřetelně pod frontier pásmem. Zdroj: [Artificial Analysis leaderboard](https://artificialanalysis.ai/leaderboards/models).
+
+![Obrázek 2: Ilustrativní zkracování lagu](/papers/ai-in-europe/figure-2-lag-compression.png)
+
+*Obrázek 2.* Ilustrativní měsíce zpoždění za US closed frontierem. Čínská open-weight komprese je šok 2025–2026. EU mid-frontier se zlepšuje pomaleji. Číst jako strukturu argumentu, ne jako oficiální sérii jednoho vendora.
+
+![Obrázek 3: Ilustrativní snapshot schopností](/papers/ai-in-europe/figure-3-capability-snapshot.png)
+
+*Obrázek 3.* Ilustrativní relativní index, kde US closed frontier ≈ 100. Čína je blízko ve schopnostech a nákladech, slabá v infra scale. EU je níž ve frontier schopnosti i compute, silnější v narativu „bezpečné adopce“ než v surové síle.
+
+Jak číst EU vs. rest bez sebeklamu:
+
+- **USA closed:** nejvyšší schopnost + infrastruktura + enterprise distribuce, pod tlakem open konkurence na ceny a retenci.
+- **Čína open-weight:** rychlé dohánění, agresivní release cykly, slabší schopnost škálovat globální inference (compute shortage).
+- **EU:** regulace a trust jako výhoda pro enterprise adoption, s rizikem stát se bezpečným trhem pro cizí modely místo producentem frontier inteligence.
+
+## 3. USA vs. Čína: open modely, infrastruktura a tempo
+
+Tato kapitola sleduje linii argumentace z veřejných explainerů, například Caleb Writes Code, „AI Race: Chinese open models just got real“, a měla by se později zpřísnit primárními zdroji.
+
+Závod open vs. closed je starší než ChatGPT. Open modely chce každý: stáhneš je, spustíš lokálně nebo na vlastním serveru. Closed laby privatizovaly nejschopnější systémy a prodávaly je přes API. Od roku 2022 closed laby dominovaly ve frontier schopnostech i v consumer distribuci.
+
+Mezera se ale zkracuje. Open modely byly nejdřív ~18 měsíců pozadu, pak rok, pak měsíce. S release cyklem kolem Kimi K3 a Qwen třídy už open konkurence vypadá téměř jako plnohodnotný frontier challenger. DeepSeek moment (začátek 2025) ukázal low-cost reasoning, které dohnalo closed reasoning a otřáslo trhy. Kimi-class skoky pak zkrátily lag za Anthropic Fable-class release na řádově měsíc. Timing je důležitý právě ve chvíli, kdy closed laby připravují IPO příběhy a potřebují, aby investoři věřili, že modelová vrstva je odolná a defenzivní.
+
+### USA: infrastruktura a closed frontier
+
+USA drží kapitál, čipy, datacentra, talent a enterprise distribuci. Closed laby staví prémiový byznys na tom, že frontier inteligence není volně commoditizovaná.
+
+Open konkurence ale tlačí na retenci a revenue: proč platit premium API, když existuje dost silná open alternativa? Laby reagují refreshi produktu a allowance, aby uživatelé zůstali. Regulace dostupnosti zároveň zvedá laťku: closed model musí být zřetelně lepší než open, jinak zákazníci odejdou.
+
+Část amerického establishmentu open laby čte jako „decelerationistické“: abundance snižuje expected profits, tím i chuť investorů financovat mega datacentra a frontier výzkum. V tomto výkladu bez komerčního tlaku tempo inovací klesá.
+
+### Čína: open weights, slabší infrastruktura
+
+Čínské laby hrají open / open-weight kartu agresivně. I přes exportní omezení čipů a trénink na starších GPU zkracují lag za US closed frontierem.
+
+Mají opačný problém: compute shortage a slabší globální inference scale. Po skoku poptávky kolem velkých Qwen release se objevilo omezování nových subscription, protože infrastruktura nestíhala demand. Čína umí „vyrobit“ model rychleji, než unést světový provoz.
+
+Pro Západ je to strategické právě proto: open dostupnost + rychlé dohánění = migrace uživatelů pryč od closed labů, zvlášť pokud USA/laby omezí globální přístup.
+
+Google stojí trochu mimo: vlastní stack (TPU, výzkum, infra, ekosystém). Když se modelová vrstva commoditizuje, Google ztrácí méně než laby, jejichž moat je hlavně jeden prémiový model. Evropa zatím nemá ekvivalent ani USA infrastruktuře, ani čínské open velocity. Stojí vedle obou s regulací a trustem, bez stejné hustoty compute a kapitálu.
+
+## 4. VC kapitál v AI: alokační teze
+
+Jestli je AI státní hra, kapitál je jedna z hlavních zbraní. Problém EU se často špatně diagnostikuje jako „málo VC“. To většinou není pravda. Evropa může vypadat v pohodě na **celkovém AI fundingu**. Skutečná mezera je **za co se ty peníze kupují**.
+
+Evropě nechybí AI funding. Chybí jí funding do **frontier tréninku modelů**: stamilionová / miliardová kola na váhy, clustery a lab, který dokáže zůstat měsíce od US closed frontieru. Stejný kapitálový stroj rád financuje:
+
+- **vertical AI** (právo, health, finance, industriální copiloti na cizím base modelu),
+- **VLM a multimodal produktové vrstvy**, které balí vision/language schopnost do workflow,
+- compliance, RAG, agents-for-enterprise a tooling, který dělá cizí modely použitelnými uvnitř evropských firem.
+
+Pro VC hledající IRR je to racionální. Pro blok hledající suverenitu je to slabé. Můžeš mít rušnou AI scénu a stejně nevlastnit vrstvu, která nastavuje ceny, přístupová pravidla a závislost.
+
+Pracovní alokační teze:
+
+1. **USA:** hustý kapitál do foundation modelů + datacenter / energie / čipů. Mega-kola drží closed laby a infra hráče. Aplikační vrstva je obří, ale sedí na domácím frontieru.
+2. **Čína:** kapitál i státní podpora do labů, které tlačí open-weight a rychlé release cykly, zároveň snaha dohnat compute gap. Open strategie je částečně odpověď na exportní restrikce a na snahu získat adoption bez stejné cloudové dominance.
+3. **EU:** dost AI venture aktivity vůči mýtu „žádný funding“, ale mix je vychýlený do vertical AI, VLM a enterprise toolingu. Podíl frontier foundation modelů a suverénní infra zůstává tenký. Výsledek: silná „AI for X“ scéna, slabá šance vlastnit frontier modelovou vrstvu.
+
+![Obrázek 4: Ilustrativní alokace VC](/papers/ai-in-europe/figure-4-vc-allocation.png)
+
+*Obrázek 4.* Ilustrativní podíl AI venture alokace podle vrstvy (ne celkové dolary). EU sloupec může koexistovat se zdravým headline AI VC: mix je app / vertical / VLM-heavy. USA sloupec je model- a infra-heavy. Čína je mezi tím: víc open-model tlaku než Evropa, méně infra hloubky než USA.
+
+Co z toho plyne pro Evropu: pokud EU dál alokuje primárně do vertical produktů a VLM na cizích base modelech, může vyhrát krátkodobou produktivitu firem a stejně prohrát strategickou vrstvu: kdo vlastní váhy, čipy, datacentra a pricing inteligence.
+
+**Alokační teze jednou větou:** Evropa nepřijde o AI závod proto, že nemá VC. Přijde o něj proto, že kapitál a politika systematicky podinvestují vrstvy moci (compute + frontier models) a přeinvestují vrstvy adopce (vertical AI + VLM + compliance).
+
+### Proč nestačí „jen VLM a vertical“
+
+Krátká odpověď: **pro firmy často ano. Pro stát a suverenitu ne.**
+
+VLM a vertical AI jsou v pohodě, pokud cílem je produktivita: lepší OCR, lepší dokumenty, lepší copilot ve firmě, lepší produkt na cizím base modelu. Evropa v tom může být výborná a vydělat peníze. Nemusíš vlastnit frontier, abys prodával workflow na Claudovi, GPT nebo Kimi.
+
+Tohle ale padá ve chvíli, kdy se AI čte jako infrastruktura moci, ne jako SaaS feature:
+
+1. **Závislost na přístupu.** Vertical a VLM bez vlastního frontieru jsou wrappery. Když US lab nebo politika omezí, komu smí Evropa nejlepší modely používat, evropský produkt najednou stojí na cizím povolení. Nemáš náhradní váhy stejné třídy.
+2. **Cenu a podmínky nastavuje někdo jiný.** Kdo vlastní frontier, nastavuje API pricing, rate limity, regionální dostupnost a compliance podmínky. Evropa pak negociuje z pozice kupce, ne producenta.
+3. **Talent a data tečou nahoru.** Nejlepší výzkumníci a nejsilnější tréninkové signály jdou tam, kde se trénuje frontier. Vertical scéna to částečně kompenzuje aplikovanou prací, ale neudrží lab, který umí další skok v reasoning / agentic schopnostech.
+4. **Státní poptávka bez domácí nabídky.** Armáda, justice, zdravotnictví a kritická infrastruktura nechtějí dlouhodobě jet jen na cizím closed modelu. Bez domácího nebo suverénně hostitelného frontieru zůstane „AI ve státě“ buď slabá, nebo geopoliticky riziková.
+5. **Open-weight tlak to nevyřeší samo.** Čínské open váhy můžou Evropě krátkodobě pomoct jako levná náhrada. To ale není evropská suverenita. Je to výměna jedné závislosti za druhou, plus otázka trustu a supply chainu.
+
+Takže: **Evropa nutně nepotřebuje frontier model, aby měla úspěšné AI firmy.** Potřebuje frontier (nebo aspoň blízko-frontier + vlastní compute), pokud chce mít AI suverenitu: schopnost trénovat, provozovat a nahradit inteligenci, když se zahraniční kohoutek přivře. VLM-only strategie je racionální business sázka a strategicky křehká státní sázka.
+
+## 5. Historie tempa a predikce pro Evropu
+
+Nedávná historie AI je příběh zrychlující distribuce a geopolitiky, ne jen lepších loss křivek.
+
+![Obrázek 5: Major breakthroughs podle regionu](/papers/ai-in-europe/figure-5-breakthroughs-by-region.png)
+
+*Obrázek 5.* Kurátorovaný přehled major breakthroughs (2017–2026). Tmavší sloupec = počet událostí. Světlejší = součet váhy „jak moc to posunulo závod“ (1–5). Příklady v grafu: USA (Transformers, ChatGPT, GPT-4, o1-class, Claude/Fable); Čína (DeepSeek R1-class, Qwen, Kimi K3-class); Evropa včetně DeepMind/UK (AlphaGo, AlphaFold, Mistral). USA dominují kvantitou i váhou. Čína má méně položek, ale vysokou váhu u open-weight skoků. Evropa má silné vědecké body, slabší frekvenci frontier product skoků.
+
+### Predikce: tři cesty, jeden nepříjemný paradox
+
+Nejdřív paradox: **Evropa může „vyhrát“ komerčně a stejně prohrát strategicky.** Vertical AI a VLM startupy můžou raisovat, shipovat a exitovat, zatímco kontinent zůstane klientem US closed vah nebo čínských open vah. Headline AI success ≠ frontier suverenita.
+
+Horizont, který mě zajímá: zhruba příští **2–4 roky** (jeden funding + infra cyklus), ne slogan deck do 2035.
+
+**Base case (nejpravděpodobnější):** EU prohraje absolutní frontier závod a udrží silnou aplikační vrstvu. Kapitál zůstane racionální: víc vertical AI a VLM, málo opravdových frontier mega-kol. Evropské modely zůstanou mid-frontier: dost dobré na spoustu workloadů, ne systém, který nastavuje globální tempo. Státy víc kupují a regulují cizí inteligenci, než ji trénují. Když se utáhne přístup, Evropa pozná závislost jako náhlý nedostatek náhrad.
+
+**Bull case (možný, ne default):** alokace se otočí. EU-scale compute se opravdu postaví a napájí. Aspoň jeden evropský lab dostane financing v hustotě blízké frontieru a zůstane pár měsíců od US closed modelů na těžkých agentic / reasoning úlohách. Veřejné zakázky začnou preferovat domácí nebo open-sovereign stacky před wrappingem GPT/Claude/Kimi. Vertical AI pak sedí na evropské bázi, ne jen na importované. Potřebuješ kapitál + energii + talent hustotu najednou; samotná regulace to nevyrobí.
+
+**Bear case (ocas, ošklivý):** closed laby a US politika utáhnou evropský přístup, zatímco čínské open modely vyplní mezeru cenou a dostupností. Evropa se stane premium compliance trhem pro toho, kdo ještě prodává přístup, plus velkým instalatérem čínských open vah v privátních stackách. Lokální vertical AI prosperuje jako tenký wrapper. Strategická autonomie zůstane řečí, ne stackem.
+
+Co znamená „prohra“ v base case (explicitně):
+
+- Evropa zůstane velkým kupcem a regulátorem cizí inteligence.
+- Evropské startupy uspějí ve vertical oborech, VLM a specializovaných workflow, ne na absolutním frontieru.
+- Váhy, clustery a pricing power zůstanou hlavně u USA (closed) a stále víc u čínských open ekosystémů.
+- Pokud USA nebo frontier laby omezí, komu smí Evropa jejich modely používat, Evropa to pozná jako závislost: najednou nebude mít čím nahradit cizí inteligenci.
+
+Co by base case vyvrátilo: vážný EU-scale compute buildout, frontier-lab financing blíž US hustotě, a evropské modely, které zůstanou pár měsíců od closed frontieru na těžkých agentic a reasoning úlohách, ne jen na marketingových demech nebo vertical leaderech.
+
+![Obrázek 6: Ilustrativní sovereignty scorecard](/papers/ai-in-europe/figure-6-sovereignty-scorecard.png)
+
+*Obrázek 6.* Ilustrativní scorecard. USA vedou vrstvy moci. Čína je silná v modelech/talent tlaku, slabá v compute scale. EU vede v jasnosti regulace a zaostává tam, kde se rozhoduje suverenita.
+
+## 6. Vládní přístup a AI ve státní infrastruktuře
+
+Vedle firemního závodu je druhá osa: **jak hluboko státy opravdu běží AI ve vlastních systémech**. Ne v strategiích, ale v daních, digitální identitě, justici, veřejném zdravotnictví, městské správě a vnitřní bezpečnosti.
+
+Srovnání čtyř modelů:
+
+1. **Čína** vede v celkové hloubce státní kontroly a napojení AI na daňové, identity a bezpečnostní systémy. Typický příklad je agresivní datová integrace napříč agendami (včetně daňových systémů typu Golden Tax). Stát tu AI nejen „používá“, ale provozuje jako nástroj správy.
+2. **Singapur** je silný referenční případ efektivního Smart Nation modelu: SingPass, digitální služby, městská správa. Boduje vysoko v identitě, zdravotnictví a urban admin. Není to ale magie ani jediný vzor světa. Je to malý, centralizovaný stát s vysokou digitální hustotou a pro-innovation governance, která adopci usnadňuje víc než EU hard-law přístup.
+3. **USA** mají silné agency projekty (včetně State Department tools jako StateChat) a obranné / daňové nasazení, ale jsou fragmentované. Nejslabší bod v tomto srovnání je digitální identita: federální USA nemají singapurský / čínský typ jednotného státní ID stacku.
+4. **EU** často vede v pravidlech (AI Act, privacy), ale průměrné provozní nasazení do core systémů je pomalejší. Umí AI omezit a auditovat dřív, než ji dokáže plošně provozovat jako běžnou státní kapacitu.
+
+![Obrázek 7: Odhadovaná hloubka AI ve státní správě podle sektorů](/papers/ai-in-europe/figure-7-gov-ai-integration.png)
+
+*Obrázek 7.* Odhadované skóre 0–100 podle sektorů (daně, ID, justice, zdravotnictví, městská správa, vnitřní bezpečnost). Celkem: Čína ~96, Singapur ~94, USA ~72, EU ~71. Jde o srovnávací odhad, ne o oficiální index jedné agentury.
+
+Pro Evropu z toho plyne druhá prohra vedle frontier modelu: i kdyby měla dobré startupy, bez státní poptávky a implementace nevznikne domovský trh, který by táhl evropské laby, data pipelines a infra. Stát, který AI hlavně reguluje a málo provozuje, vychovává ekosystém závislý na cizích platformách.
+
+## Závěr
+
+AI v Evropě je zajímavé, protože už to není soutěž firem. Je to otázka, zda regulovaný kontinent dokáže zůstat hráčem, když se s inteligencí zachází jako se strategickou infrastrukturou.
+
+USA mají infrastrukturu a closed frontier laby pod tlakem open modelů. Čína má open-weight velocity, compute bottleneck a zároveň nejhlubší státní provoz AI ve správě. Singapur ukazuje efektivní Smart Nation cestu, ne univerzální recept. Evropa má pravidla, trust a často dost AI VC, které ale míjí frontier modely, protože preferuje vertical AI a VLM. Pokud se ten mix a státní implementace nezmění, Evropa může vypadat komerčně rušně a stejně prohrát vrstvu, která nastavuje podmínky závodu.
+
+Tento draft je k editaci: vyměnit zbývající ilustrativní grafy za živé data cuty, zpřísnit tvrzení o Anthropic / exportech primárními citacemi a otestovat VC podíly proti reálnému kapitálovému datasetu.
